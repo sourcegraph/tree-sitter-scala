@@ -88,6 +88,7 @@ module.exports = grammar({
       $.package_object,
       $._definition,
       $._end_marker,
+      $.expression
     ),
 
     _definition: $ => choice(
@@ -161,7 +162,7 @@ module.exports = grammar({
       field('extend', optional($.extends_clause))
     ),
 
-    package_clause: $ => seq(
+    package_clause: $ => prec.right(seq(
       'package',
       field('name', $.package_identifier),
       optional($._semicolon),
@@ -170,7 +171,7 @@ module.exports = grammar({
       // concerned with the structure rather than the validity of the program
       // we'll allow it.
       field('body', optional($.template_body))
-    ),
+    )),
 
     package_identifier: $ => prec.right(sep1(
       '.', $._identifier

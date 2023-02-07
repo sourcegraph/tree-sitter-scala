@@ -1439,6 +1439,10 @@
           "named": true
         },
         {
+          "type": "expression",
+          "named": true
+        },
+        {
           "type": "package_clause",
           "named": true
         },
